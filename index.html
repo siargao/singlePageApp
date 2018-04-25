@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <title>Single Page Application</title>
@@ -9,7 +8,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
     <script src="https://unpkg.com/react-router/umd/react-router.min.js"></script>
     <script src="https://unpkg.com/react-router-dom/umd/react-router-dom.min.js"></script>
-    <style>
+   
+   <style>
         body {
             background-color: #FFCC00;
             padding: 20px;
@@ -57,6 +57,7 @@
             margin-bottom: 10 px;
         }
     </style>
+
 </head>
 
 <body>
@@ -64,32 +65,58 @@
 
     <script type="text/babel">
 
-        const Router = window.ReactRouterDOM.BrowserRouter;
-        const Route =  window.ReactRouterDOM.Route;
-        const Link =  window.ReactRouterDOM.Link;
-        const Prompt =  window.ReactRouterDOM.Prompt;
-        const Switch = window.ReactRouterDOM.Switch;
-        const Redirect = window.ReactRouterDOM.Redirect;
-        const IndexRoute =  window.ReactRouterDOM.IndexRoute;
-        
-
+        const Router = window.ReactRouter.BrowserRouter;
+        const Route =  window.ReactRouter.Route;
+        const Link =  window.ReactRouter.Link;
+        const Prompt =  window.ReactRouter.Prompt;
+        const Switch = window.ReactRouter.Switch;
+        const Redirect = window.ReactRouter.Redirect;
+        const IndexRoute =  window.ReactRouter.IndexRoute;
 
         var destination = document.querySelector('#container');
 
-          const Home = React.createClass({
+        const Home = React.createClass({
             render: function(){
 
-            return(
-                <div>
-                    <h2>HOME PAGE</h2>
-                    <p>Welcome to my Home Page</p>
-                    <p>The content of the home page is under construction</p>
-                </div>
-            );
+                return(
+                    <div>
+                        <h2>HOME PAGE</h2>
+                        <p>Welcome to my Home Page</p>
+                        <p>The content of the home page is under construction</p>
+                    </div>
+                );
             },
 
         });
-        
+
+        const Stuff = React.createClass({
+            render: function(){
+
+                return(
+                    <div>
+                        <h2>HOT STUFFS</h2>
+                        <p>Welcome to the Stuff</p>
+                        <p>The list of stuff is in progress</p>
+                    </div>
+                );
+            },
+
+        });
+
+        const Contact = React.createClass({
+            render: function(){
+
+                return(
+                    <div>
+                        <h2>CONTACTS</h2>
+                        <p>List of Contacts</p>
+                        <p>List of contacts are on its way</p>
+                    </div>
+                );
+            },
+
+        });
+
         const App = React.createClass({
             render: function(){
                 return(
@@ -111,16 +138,15 @@
                  )
             },
         });
-       
-      
 
         ReactDOM.render(
             <Router>
                 <Route path='/' component={App}>
                     <IndexRoute component={Home}/>
+                    <Route path='stuff' component={Stuff}/>
+                    <Route path='contact' component={Contact}/>
                 </Route>
-            </Router>,
-            destination
+            </Router>, destination
         );
 
     </script>
