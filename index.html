@@ -6,9 +6,7 @@
     <script src="https://unpkg.com/react@15.3.2/dist/react.js"></script>
     <script src="https://unpkg.com/react-dom@15.3.2/dist/react-dom.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
-    <script src="https://unpkg.com/react-router/umd/react-router.min.js"></script>
-    <script src="https://unpkg.com/react-router-dom/umd/react-router-dom.min.js"></script>
-   
+    <script src="https://npmcdn.com/react-router@2.4.0/umd/ReactRouter.min.js"></script>
    <style>
         body {
             background-color: #FFCC00;
@@ -32,14 +30,14 @@
 
         ul.header {
             background-color: #111;
-            padding: 0;
+            padding: 20px;
         }
 
         ul.header li a {
             color: #FFF;
             font-weight: bold;
             text-decoration: none;
-            padding: 20 px;
+            padding: 20px;
             display: inline;
         }
 
@@ -56,6 +54,10 @@
         .content li {
             margin-bottom: 10 px;
         }
+
+        .active{
+            background-color: cornflowerblue;
+        }
     </style>
 
 </head>
@@ -65,13 +67,19 @@
 
     <script type="text/babel">
 
-        const Router = window.ReactRouter.BrowserRouter;
-        const Route =  window.ReactRouter.Route;
-        const Link =  window.ReactRouter.Link;
-        const Prompt =  window.ReactRouter.Prompt;
-        const Switch = window.ReactRouter.Switch;
-        const Redirect = window.ReactRouter.Redirect;
-        const IndexRoute =  window.ReactRouter.IndexRoute;
+        // const Router = window.ReactRouter.BrowserRouter;
+        // const Route =  window.ReactRouter.Route;
+        // const Link =  window.ReactRouter.Link;
+        // const Prompt =  window.ReactRouter.Prompt;
+        // const Switch = window.ReactRouter.Switch;
+        // const Redirect = window.ReactRouter.Redirect;
+        // const IndexRoute =  window.ReactRouter.IndexRoute;
+
+        const { Router, 
+                Route,
+                Link,
+                IndexLink,
+                IndexRoute}= ReactRouter;
 
         var destination = document.querySelector('#container');
 
@@ -125,13 +133,14 @@
                         <h1>Simple SPA</h1>
 
                         <ul className = 'header' >
-                            <li><Link to='/'>Home</Link></li>
-                            <li><Link to='/Stuff'>Stuff</Link></li>
-                            <li><Link to='/Contact'>Contact</Link></li>
+                            <li><Link activeClassName='active' to='/'>Home</Link></li>
+                            <li><Link activeClassName='active' to='/Stuff'>Stuff</Link></li>
+                            <li><Link activeClassName='active' to='/Contact'>Contact</Link></li>
                         </ul>
                         
                         <div className='content'>
                             {this.props.children}
+                            {console.log(this.props.children)}
                         </div>
 
                     </div>
@@ -146,7 +155,8 @@
                     <Route path='stuff' component={Stuff}/>
                     <Route path='contact' component={Contact}/>
                 </Route>
-            </Router>, destination
+            </Router>,
+ destination
         );
 
     </script>
