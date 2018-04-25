@@ -8,8 +8,54 @@
     <script src="https://unpkg.com/react-dom@15.3.2/dist/react-dom.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
     <script src="https://unpkg.com/react-router/umd/react-router.min.js"></script>
+    <script src="https://unpkg.com/react-router-dom/umd/react-router-dom.min.js"></script>
     <style>
-        /*TODO*/
+        body {
+            background-color: #FFCC00;
+            padding: 20px;
+            margin: 0;
+        }
+
+        h1,
+        h2,
+        p,
+        ul,
+        li {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        ul.header li {
+            display: inline;
+            list-style-type: none;
+            margin: 0;
+        }
+
+        ul.header {
+            background-color: #111;
+            padding: 0;
+        }
+
+        ul.header li a {
+            color: #FFF;
+            font-weight: bold;
+            text-decoration: none;
+            padding: 20 px;
+            display: inline;
+        }
+
+        .content {
+            background-color: #FFF;
+            padding: 20px;
+        }
+
+        .content h2 {
+            padding: 0;
+            margin: 0;
+        }
+
+        .content li {
+            margin-bottom: 10 px;
+        }
     </style>
 </head>
 
@@ -18,29 +64,59 @@
 
     <script type="text/babel">
 
+        const Router = window.ReactRouterDOM.BrowserRouter;
+        const Route =  window.ReactRouterDOM.Route;
+        const Link =  window.ReactRouterDOM.Link;
+        const Prompt =  window.ReactRouterDOM.Prompt;
+        const Switch = window.ReactRouterDOM.Switch;
+        const Redirect = window.ReactRouterDOM.Redirect;
+
+
         var destination = document.querySelector('#container');
         
         const App = React.createClass({
             render: function(){
                 return(
                     <div> 
+
                         <h1>Simple SPA</h1>
+
                         <ul className = 'header' >
                             <li>Home</li>
                             <li>Stuff</li>
                             <li>Contact</li>
                         </ul>
-                        <div className='content'></div>
+                        
+                        <div className='content'>
+                            <Home/>
+                        </div>
+
                     </div>
                  )
             },
         });
        
+        const Home = React.createClass({
+            render: function(){
+
+            return(
+                <div>
+                    <h2>HOME PAGE</h2>
+                    <p>Welcome to my Home Page</p>
+                    <p>The content of the home page is under construction</p>
+                </div>
+            );
+            },
+
+        });
+
         ReactDOM.render(
-            <div>
-                <App/>
-            </div>
-        ,destination);
+            <Router>
+                <Route path='/' component={App}>
+                </Route>
+            </Router>,
+            destination
+        );
 
     </script>
 </body>
