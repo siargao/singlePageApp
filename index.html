@@ -70,33 +70,13 @@
         const Prompt =  window.ReactRouterDOM.Prompt;
         const Switch = window.ReactRouterDOM.Switch;
         const Redirect = window.ReactRouterDOM.Redirect;
+        const IndexRoute =  window.ReactRouterDOM.IndexRoute;
+        
 
 
         var destination = document.querySelector('#container');
-        
-        const App = React.createClass({
-            render: function(){
-                return(
-                    <div> 
 
-                        <h1>Simple SPA</h1>
-
-                        <ul className = 'header' >
-                            <li>Home</li>
-                            <li>Stuff</li>
-                            <li>Contact</li>
-                        </ul>
-                        
-                        <div className='content'>
-                            <Home/>
-                        </div>
-
-                    </div>
-                 )
-            },
-        });
-       
-        const Home = React.createClass({
+          const Home = React.createClass({
             render: function(){
 
             return(
@@ -109,10 +89,35 @@
             },
 
         });
+        
+        const App = React.createClass({
+            render: function(){
+                return(
+                    <div> 
+
+                        <h1>Simple SPA</h1>
+
+                        <ul className = 'header' >
+                            <li><Link to='/'>Home</Link></li>
+                            <li><Link to='/Stuff'>Stuff</Link></li>
+                            <li><Link to='/Contact'>Contact</Link></li>
+                        </ul>
+                        
+                        <div className='content'>
+                            {this.props.children}
+                        </div>
+
+                    </div>
+                 )
+            },
+        });
+       
+      
 
         ReactDOM.render(
             <Router>
                 <Route path='/' component={App}>
+                    <IndexRoute component={Home}/>
                 </Route>
             </Router>,
             destination
